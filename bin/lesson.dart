@@ -51,6 +51,25 @@
 
 import 'dart:io';
 
+void main() {
+  // Задача 1: Налоговый расчет
+  double salary = double.parse(stdin.readLineSync()!);
+  print('Оклад после налога: ${salary * (1 - (salary > 100000 ? 0.13 : 0.06))}');
+
+  // Задача 2: Количество дней в месяце
+  int month = int.parse(stdin.readLineSync()!);
+  int days = month == 2 ? 28 : [4, 6, 9, 11].contains(month) ? 30 : 31;
+  print('Количество дней в месяце: $days');
+
+  // Задача 3: Максимальное значение в списке
+  List<int> numbers = stdin.readLineSync()!.split(' ').map(int.parse).toList();
+  print('Максимальное значение: ${numbers.reduce((a, b) => a > b ? a : b)}');
+}
+
+
+
+import 'dart:io';
+
 List<num> applyOperation(List<num> numbers, num Function(num) operation) {
   return numbers.map(operation).toList();
 }
