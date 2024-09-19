@@ -65,6 +65,46 @@
 // №16
 // "public" доступен везде ,private(с подверкиванием) доступен только внутри библиотеки
 
+class Room {
+  int _currentSize = 0;
+  final int maxSize;
+
+  Room(this.maxSize);
+
+  void addStudent(bool isComendant) {
+    if (!isComendant && _currentSize >= maxSize) {
+      print('Ошибка: комната переполнена.');
+      return;
+    }
+    _currentSize++;
+  }
+
+  void removeStudent() {
+    if (_currentSize > 0) _currentSize--;
+  }
+
+  void printStatus() {
+    print('Текущий размер комнаты: $_currentSize');
+    print('Максимальный размер комнаты: $maxSize');
+  }
+}
+
+void main() {
+  Room room = Room(2); // Комната на 2 кровати
+
+  room.addStudent(false); // Добавить студента
+  room.addStudent(false); // Добавить студента
+  room.addStudent(false); // Ошибка: комната переполнена
+  room.printStatus();     // Текущий размер комнаты: 2
+
+  room.addStudent(true);  // Командант может добавить студента, даже если комната переполнена
+  room.printStatus();     // Текущий размер комнаты: 3
+
+  room.removeStudent();   // Убрать студента
+  room.printStatus();     // Текущий размер комнаты: 2
+}
+
+
 
 class Student {
   String name;
